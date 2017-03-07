@@ -3,17 +3,24 @@
 <head>
   <meta charset="utf-8">
   <title>Books and Databases</title>
-  <script src="vendors/jquery.js" charset="utf-8"></script>
+  <script src="vendors/angular.min.js" charset="utf-8"></script>
   <script src="scripts/client.js" charset="utf-8"></script>
 </head>
-<body>
+<body ng-app="BooksApp" ng-controller="BooksController as bc">
   <h1>Book Shelf</h1>
-  <form id="newBookForm">
+
+<div ng-repeat="books in bc.booksList" class="">
+  <!-- <li>
+      Title: {{books.title}} Author: {{books.author}} Publisher: {{books.publisher}} Edition: {{books.edition}}
+</li> -->
+</div>
+
+  <form>
     <input name="title" placeholder="Title">
     <input name="author" placeholder="Author">
     <input name="edition" placeholder="Edition">
     <input name="publisher" placeholder="Publisher">
-    <button type="submit" id="newBookButton">Click here to add the book!</button>
+    <button type="submit" >Click here to add the book!</button>
   </form>
   <table>
     <thead>
@@ -26,7 +33,15 @@
         <th>Save</th>
       </tr>
     </thead>
-    <tbody id="bookShelf">
+    <tbody ng-repeat="books in bc.booksList">
+      <tr >
+        <td>{{books.title}}</td>
+        <td>{{books.author}}</td>
+        <td>{{books.edition}}</td>
+        <td>{{books.publisher}}</td>
+        <td><button data-bookId="{{books.id}}" type="button" name="button">DELETE</button></td>
+        <td><button data-bookId="{{books.id}}" type="button" name="button">SAVE</button></td>
+      </tr>
     </tbody>
   </table>
 </body>
